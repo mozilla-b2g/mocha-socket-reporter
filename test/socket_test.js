@@ -13,7 +13,7 @@ suite('SocketReporter', function() {
 
     on = sinon.spy(runner, 'on');
     socket = sinon.spy(corredor, 'Publisher');
-    subject = new SocketReporter(runner, 'ipc:///tmp/sink');
+    subject = new SocketReporter(runner);
     send = sinon.spy(subject.result, 'send');
     close = sinon.spy(subject.result, 'close');
   });

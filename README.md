@@ -5,7 +5,7 @@ Mocha reporter for streaming results over a socket. Designed to be used with the
 python service.
 
 [![Build
-Status](https://travis-ci.org/ahal/mocha-socket-reporter.png?branch=master)](https://travis-ci.org/ahal/mocha-socket-reporter)
+Status](https://travis-ci.org/mozilla-b2g/mocha-socket-reporter.png?branch=master)](https://travis-ci.org/mozilla-b2g/mocha-socket-reporter)
 
 ## Usage
 

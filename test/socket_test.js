@@ -30,8 +30,8 @@ suite('SocketReporter', function() {
     sinon.assert.calledWith(on, 'fail');
     sinon.assert.calledWith(on, 'pass');
     sinon.assert.calledWith(on, 'pending');
-    sinon.assert.calledWith(on, 'test');
-    sinon.assert.calledWith(on, 'test end');
+    sinon.assert.calledWith(on, 'suite');
+    sinon.assert.calledWith(on, 'suite end');
 
     sinon.assert.called(socket);
     assert.strictEqual(subject.status, 'PASS');
@@ -93,30 +93,31 @@ suite('SocketReporter', function() {
                                    'status': subject.status});
   });
 
-  test('#onTest', function() {
+  test('#onSuite', function() {
     var testObj = {
       file: 'doge_start_test_wow.js',
       fullTitle: function() {
         return 'some title';
       }
     };
-    subject.onTest(testObj);
+    subject.onSuite(testObj);
 
     sinon.assert.calledWith(send, {'action': 'test_start',
                                    'test': subject.getFile(testObj)});
   });
 
-  test('#onTestEnd', function() {
+  test('#onSuiteEnd', function() {
     var testObj = {
-      file: 'doge_end_test_wow.js',
-      fullTitle: function() {
-        return 'some title';
+      parent: {
+        root: true,
+        file: 'doge_end_test_wow.js',
+        status: 'PASS'
       }
     };
-    subject.onTestEnd(testObj);
+    subject.onSuiteEnd(testObj);
 
     sinon.assert.calledWith(send, {'action': 'test_end',
-                                   'test': subject.getTitle(testObj),
+                                   'test': subject.getFile(testObj),
                                    'status': subject.status});
   });
 
